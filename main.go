@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"tubeskredit/operasi"
 	"tubeskredit/pinjaman"
+	"tubeskredit/ubah_hapus"
 )
 
 func main() {
@@ -11,7 +12,7 @@ func main() {
 	daftarPinjaman := &pinjaman.DaftarPinjaman{}
 
 	// Variabel untuk input
-	var pilihan int
+    var pilihan int
 	var namaPeminjam string
 	var jumlahPinjaman float64
 	var lamaPinjaman int
@@ -19,13 +20,15 @@ func main() {
 
 	for {
 		// Menu Utama
-		fmt.Println("\n--- SIMULASI PINJAMAN ---")
+		fmt.Println("\n--- SIMULASI PINJAMAN DAN KREDIT ---")
 		fmt.Println("1. Tambah Peminjam")
 		fmt.Println("2. Tampilkan Daftar Peminjam")
 		fmt.Println("3. Cari Peminjam (Sequential)")
 		fmt.Println("4. Urutkan Peminjam berdasarkan Jumlah")
 		fmt.Println("5. Urutkan Peminjam berdasarkan Nama")
-		fmt.Println("6. Keluar")
+		fmt.Println("6. Ubah Data Peminjam")
+		fmt.Println("7. Hapus Data Peminjam")
+		fmt.Println("8. Keluar")
 		fmt.Print("Pilih menu: ")
 		fmt.Scan(&pilihan)
 
@@ -64,15 +67,20 @@ func main() {
 
 		case 3:
 			// Cari pinjaman
+			var namaCari string
 			fmt.Print("Masukkan nama yang dicari: ")
-			fmt.Scan(&namaPeminjam)
+			fmt.Scan(&namaCari)
 			var hasil [operasi.MaksHasil]pinjaman.Pinjaman
 			var nHasil int
-			operasi.CariPinjamanSequential(daftarPinjaman, namaPeminjam, &hasil, &nHasil)
+			operasi.CariPinjamanSequential(daftarPinjaman, namaCari, &hasil, &nHasil)
 			if nHasil > 0 {
 				fmt.Println("Pinjaman ditemukan:")
 				for i := 0; i < nHasil; i++ {
-					fmt.Printf("Nama: %s | Pinjaman: Rp %.2f | Status: %s\n", hasil[i].NamaPeminjam, hasil[i].JumlahPinjaman, hasil[i].StatusPembayaran)
+					fmt.Printf("Nomor: %d | Nama: %s | Pinjaman: Rp %.2f | Status: %s\n",
+						hasil[i].Nomor,
+						hasil[i].NamaPeminjam,
+						hasil[i].JumlahPinjaman,
+						hasil[i].StatusPembayaran)
 				}
 			} else {
 				fmt.Println("Pinjaman tidak ditemukan")
@@ -82,21 +90,23 @@ func main() {
 			// Urutkan berdasarkan jumlah pinjaman
 			operasi.UrutPinjamanSelectionSort(&daftarPinjaman.Data, daftarPinjaman.N)
 			fmt.Println("Daftar Pinjaman Terurut (Jumlah Pinjaman):")
-			for i := 0; i < daftarPinjaman.N; i++ {
-				p := daftarPinjaman.Data[i]
-				fmt.Printf("Nama: %s | Pinjaman: Rp %.2f | Status: %s\n", p.NamaPeminjam, p.JumlahPinjaman, p.StatusPembayaran)
-			}
+			daftarPinjaman.TampilkanPinjaman()
 
 		case 5:
 			// Urutkan berdasarkan nama
 			operasi.UrutPinjamanInsertionSort(&daftarPinjaman.Data, daftarPinjaman.N)
 			fmt.Println("Daftar Pinjaman Terurut (Nama):")
-			for i := 0; i < daftarPinjaman.N; i++ {
-				p := daftarPinjaman.Data[i]
-				fmt.Printf("Nama: %s | Pinjaman: Rp %.2f | Status: %s\n", p.NamaPeminjam, p.JumlahPinjaman, p.StatusPembayaran)
-			}
+			daftarPinjaman.TampilkanPinjaman()
 
 		case 6:
+			// Ubah data pinjaman
+			ubah_hapus.UbahPinjaman(daftarPinjaman)
+
+		case 7:
+			// Hapus data pinjaman
+			ubah_hapus.HapusPinjaman(daftarPinjaman,0)
+
+		case 8:
 			// Keluar dari program
 			fmt.Println("Terima kasih!")
 			return
