@@ -20,11 +20,11 @@ func main() {
 	for {
 		// Menu Utama
 		fmt.Println("\n--- SIMULASI PINJAMAN ---")
-		fmt.Println("1. Tambah Pinjaman")
-		fmt.Println("2. Tampilkan Daftar Pinjaman")
-		fmt.Println("3. Cari Pinjaman (Sequential)")
-		fmt.Println("4. Urutkan Pinjaman berdasarkan Jumlah")
-		fmt.Println("5. Urutkan Pinjaman berdasarkan Nama")
+		fmt.Println("1. Tambah Peminjam")
+		fmt.Println("2. Tampilkan Daftar Peminjam")
+		fmt.Println("3. Cari Peminjam (Sequential)")
+		fmt.Println("4. Urutkan Peminjam berdasarkan Jumlah")
+		fmt.Println("5. Urutkan Peminjam berdasarkan Nama")
 		fmt.Println("6. Keluar")
 		fmt.Print("Pilih menu: ")
 		fmt.Scan(&pilihan)
@@ -40,6 +40,12 @@ func main() {
 			fmt.Scan(&lamaPinjaman)
 			fmt.Print("Suku Bunga (%): ")
 			fmt.Scan(&sukuBunga)
+
+			bungaTotal := jumlahPinjaman * (sukuBunga / 100)
+			totalBayar := jumlahPinjaman + bungaTotal
+			cicilanPerBulan := totalBayar / float64(lamaPinjaman)
+
+			fmt.Printf("Cicilan per bulan: Rp %.2f\n", cicilanPerBulan)
 
 			// Buat objek pinjaman
 			pinjamBaru := pinjaman.Pinjaman{
@@ -66,7 +72,7 @@ func main() {
 			if nHasil > 0 {
 				fmt.Println("Pinjaman ditemukan:")
 				for i := 0; i < nHasil; i++ {
-					fmt.Printf("Nama: %s | Pinjaman: Rp %.2f\n", hasil[i].NamaPeminjam, hasil[i].JumlahPinjaman)
+					fmt.Printf("Nama: %s | Pinjaman: Rp %.2f | Status: %s\n", hasil[i].NamaPeminjam, hasil[i].JumlahPinjaman, hasil[i].StatusPembayaran)
 				}
 			} else {
 				fmt.Println("Pinjaman tidak ditemukan")
@@ -78,7 +84,7 @@ func main() {
 			fmt.Println("Daftar Pinjaman Terurut (Jumlah Pinjaman):")
 			for i := 0; i < daftarPinjaman.N; i++ {
 				p := daftarPinjaman.Data[i]
-				fmt.Printf("Nama: %s | Pinjaman: Rp %.2f\n", p.NamaPeminjam, p.JumlahPinjaman)
+				fmt.Printf("Nama: %s | Pinjaman: Rp %.2f | Status: %s\n", p.NamaPeminjam, p.JumlahPinjaman, p.StatusPembayaran)
 			}
 
 		case 5:
@@ -87,7 +93,7 @@ func main() {
 			fmt.Println("Daftar Pinjaman Terurut (Nama):")
 			for i := 0; i < daftarPinjaman.N; i++ {
 				p := daftarPinjaman.Data[i]
-				fmt.Printf("Nama: %s | Pinjaman: Rp %.2f\n", p.NamaPeminjam, p.JumlahPinjaman)
+				fmt.Printf("Nama: %s | Pinjaman: Rp %.2f | Status: %s\n", p.NamaPeminjam, p.JumlahPinjaman, p.StatusPembayaran)
 			}
 
 		case 6:
