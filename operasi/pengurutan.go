@@ -4,7 +4,7 @@ import (
 	"tubeskredit/pinjaman"
 )
 
-// Pengurutan Selection Sort berdasarkan jumlah pinjaman
+// Pengurutan menggunakan Selection Sort berdasarkan jumlah pinjaman
 func UrutPinjamanSelectionSort(daftar *[pinjaman.MaksPinjaman]pinjaman.Pinjaman, n int) {
 	for i := 0; i < n-1; i++ {
 		indeksMaks := i
@@ -17,7 +17,7 @@ func UrutPinjamanSelectionSort(daftar *[pinjaman.MaksPinjaman]pinjaman.Pinjaman,
 	}
 }
 
-// Pengurutan Insertion Sort berdasarkan nama
+// Pengurutan menggunakan Insertion Sort berdasarkan nama
 func UrutPinjamanInsertionSort(daftar *[pinjaman.MaksPinjaman]pinjaman.Pinjaman, n int) {
 	for i := 1; i < n; i++ {
 		kunci := daftar[i]

@@ -7,7 +7,7 @@ import (
 
 const MaksHasil = 100
 
-// Pencarian Sequential (case-insensitive, menggunakan strings.Contains)
+// Pencarian Sequential (case-insensitive, menggunakan strings.Contains supaya huruf besar/kecil tidak masalah)
 func CariPinjamanSequential(daftar *pinjaman.DaftarPinjaman, namaCari string, hasil *[MaksHasil]pinjaman.Pinjaman, n *int) {
 	*n = 0
 	for i := 0; i < daftar.N; i++ {
@@ -20,7 +20,6 @@ func CariPinjamanSequential(daftar *pinjaman.DaftarPinjaman, namaCari string, ha
 	}
 }
 
-// Pencarian Binary Search (diasumsikan data sudah terurut)
 func CariPinjamanBinary(daftar *pinjaman.DaftarPinjaman, namaCari string) int {
 	kiri := 0
 	kanan := daftar.N - 1

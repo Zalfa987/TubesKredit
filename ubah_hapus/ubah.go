@@ -6,21 +6,18 @@ import (
 )
 
 func UbahPinjaman(daftar *pinjaman.DaftarPinjaman) {
-	// Tampilkan daftar peminjam
 	daftar.TampilkanPinjaman()
 
-	// Minta input nomor pinjaman yang ingin diubah
 	var nomor int
 	fmt.Print("\nMasukkan nomor peminjam yang ingin diubah: ")
 	fmt.Scan(&nomor)
 
-	// Cari index pinjaman dengan nomor yang sesuai
 	index := -1
 	i := 0
 	for i < daftar.N {
 		if daftar.Data[i].Nomor == nomor {
 			index = i
-			i = daftar.N // keluar loop
+			i = daftar.N
 		} else {
 			i++
 		}
@@ -31,7 +28,6 @@ func UbahPinjaman(daftar *pinjaman.DaftarPinjaman) {
 		return
 	}
 
-	// Tampilkan menu edit
 	fmt.Println("\nBagian mana yang ingin diubah?")
 	fmt.Println("1. Nama Peminjam")
 	fmt.Println("2. Jumlah Pinjaman")

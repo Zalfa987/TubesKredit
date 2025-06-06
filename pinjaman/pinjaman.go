@@ -2,7 +2,7 @@ package pinjaman
 
 import "fmt"
 
-const MaksPinjaman = 100 // Tambahkan ini
+const MaksPinjaman = 100
 
 type Pinjaman struct {
 	Nomor            int
@@ -13,13 +13,11 @@ type Pinjaman struct {
 	StatusPembayaran string
 }
 
-// Struktur untuk menyimpan daftar pinjaman
 type DaftarPinjaman struct {
 	Data [MaksPinjaman]Pinjaman
-	N    int // Tambahkan ini
+	N    int
 }
 
-// Metode untuk menambah pinjaman
 func (dp *DaftarPinjaman) TambahPinjaman(p Pinjaman) {
 	if dp.N < MaksPinjaman {
 		p.StatusPembayaran = "Belum Lunas"
@@ -32,7 +30,6 @@ func (dp *DaftarPinjaman) TambahPinjaman(p Pinjaman) {
 	}
 }
 
-// Metode untuk menampilkan semua pinjaman
 func (dp *DaftarPinjaman) TampilkanPinjaman() {
 	fmt.Println("Daftar Pinjaman:")
 	for i := 0; i < dp.N; i++ {

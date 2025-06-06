@@ -6,10 +6,10 @@ import (
 )
 
 func HapusPinjaman(daftar *pinjaman.DaftarPinjaman, nomor int) {
-	// Tampilkan daftar peminjam
+	// Untuk menampilkan daftar peminjam
 	daftar.TampilkanPinjaman()
 
-	// Minta input nomor pinjaman yang ingin dihapus
+	// Minta input nomor pinjaman yang mau dihapus
 	fmt.Print("\nMasukkan nomor pinjaman yang ingin dihapus: ")
 	fmt.Scan(&nomor)
 
@@ -19,7 +19,7 @@ func HapusPinjaman(daftar *pinjaman.DaftarPinjaman, nomor int) {
 	for i < daftar.N {
 		if daftar.Data[i].Nomor == nomor {
 			index = i
-			i = daftar.N // keluar loop
+			i = daftar.N 
 		} else {
 			i++
 		}
