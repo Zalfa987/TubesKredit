@@ -5,6 +5,18 @@ Aplikasi **Simulasi Pinjaman dan Kredit Sederhana** ini dibuat untuk membantu in
 
 ---
 
+## 👨‍💻 Dikerjakan Oleh:
+
+- **Natanael Adrie Christiawan**  
+  NIM: 103012400334  
+  Kelas: IF-48-10
+
+- **Zalfa Ahabadin**  
+  NIM: 103012400388  
+  Kelas: IF-48-10
+
+---
+
 ## ✨ Fitur Utama
 
 - **Tambah Data Peminjam**  
